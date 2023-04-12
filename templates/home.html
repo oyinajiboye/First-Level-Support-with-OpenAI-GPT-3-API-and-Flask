@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ChatGPT</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$("#question-form").submit(function(event) {
+				event.preventDefault();
+				$.post("/get_answer", $(this).serialize(), function(data) {
+					$("#answer").text(data.answer);
+				});
+			});
+		});
+	</script>
+</head>
+<body>
+	<h1>ChatGPT</h1>
+	<form id="question-form">
+		<label for="user_input">Ask a question:</label><br>
+		<input type="text" id="user_input" name="user_input"><br>
+		<input type="submit" value="Submit">
+	</form>
+	<p id="answer"></p>
+</body>
+</html>
